@@ -1,0 +1,33 @@
+
+<!--    5.7-->
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.javaboy.meeting.mapper.MeetingMapper">
+    <insert id="addMeeting" parameterType="org.javaboy.meeting.model.Meeting" useGeneratedKeys="true" keyProperty="meetionid">
+        insert into meeting (
+            meetingid;
+            meetingname,
+            roomid,
+            reservationistid,
+            numberofparticipants,
+            starttime,
+            endtime,
+            reservationtion,
+            description,
+            status  )
+        value (
+
+        )
+    </insert>
+
+    <insert id="addParticipants">
+        insert into meetingparticipants(meetingid,employeeid) value
+        <foreach collection="mps" item="mp" separator=",">
+            (#{meetingid},#{mp})
+        </foreach>
+    </insert>
+
+</mapper>
+
