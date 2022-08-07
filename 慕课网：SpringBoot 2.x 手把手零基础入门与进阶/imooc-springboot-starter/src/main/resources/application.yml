@@ -1,0 +1,76 @@
+
+# 1-9 yml配置文件
+
+server:
+  port: 8090
+
+app:
+  name:
+    xxx:
+      yyy:
+        zzz: imooc
+
+
+#    1-14 在yml中实现自定义配置与表达式
+self:
+  custom:
+    config:
+      sdkSecrect: abc123
+      host: https://www.imooc.com
+      port: ${server.port}
+
+
+#  1-15 自定义启动logo
+spring:
+  profiles:   # 5-1 SpringBoot多环境profile定义
+    active: test
+  datasource:     # 数据源相关的配置节点 ||  3-1 整合高性能的HicariCP数据源
+    type: com.zaxxer.hikari.HikariDataSource    # 指定数据源类型：HikariDataSource
+#    type: com.alibaba.druid.pool.DruidDataSource    # 3-15
+    driver-class-name: com.mysql.jdbc.Driver    # MySql/MariaDB驱动
+    url: jdbc:mysql://localhost:3306/imooc-springboot-learn?useUnicode=true&characterEncoding=UTF-8&aotoReconnect=true
+    username: root
+    password: root
+    hikari:
+      connection-timeout: 30000   #连接时长
+      minimum-idle: 5             #最小连接数
+      maximum-pool-size: 20       # 最大连接数
+      auto-commit: true           # 自动提交
+      idle-timeout: 600000        # 连接超时时长
+      pool-name: DateSourceHikariCP       # 连接池名字
+      max-lifetime: 1800000               #连接的生命时长
+      connection-test-query: SELECT 1
+
+  servlet:  # 2-7 SpringBoot 之自定义异常页面
+    multipart:
+      max-file-size: 500KB     # 文件上传大小限制
+      max-request-size: 2MB   # 文件最大请求限制
+  #  mvc:  # 2-1
+#    static-path-pattern: /abc/*
+  banner:   #  1-15 自定义启动logo
+    location: classpath:qiaoba.txt
+#    image:
+#      location: classpath:banner/cat.png
+#      pixelmode: block
+
+thymeleaf:    #4-1 入门Thymeleaf模板与基本使用
+  prefix: classpath:\\teacher.html
+  suffix: .html
+
+#  <!--        3-3 SpringBoot整合Mybatis的配置-->
+mybatis:
+  type-aliases-package: com.imooc.pojo    #所有数据库表逆向后所一一映射的实体类 Entity/Bean/POJO
+  mapper-locations: classpath:mappers/*.xml   # 所有mapper映射的文件所在目录位置
+#  configuration:    # 3-16 开启mybatis的sql执行日志打印
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启mybatis的日记实现，可以在控制台打印
+# 通用mapper配置
+mapper:
+  mappers: com.imooc.my.mapper.MyMapper     #所有Mapper豆需要实现的接口
+  not-empty: false      #在进行数据库操作的时候，判断一个属性是否为空的时候，是否需要自动追加部分为空字符串的判断
+                        # useranme !=null 后面 不需要 username !=''
+  identity: MYSQL
+#分页插件助手的配置
+pagehelper:
+  helper-dialect: mysql
+  support-methods-arguments: true
+  

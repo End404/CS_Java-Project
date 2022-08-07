@@ -1,0 +1,4 @@
+
+#  5-1 SpringBoot多环境profile定义
+server:
+  port: 8090

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+
+<!--4-1 入门Thymeleaf模板与基本使用-->
+<body>
+    Hell <span th:text="慕课网"></span>
+    <br/>
+    Hell <span th:text="${there}"></span>
+    <br/>
+
+    <input th:value="${there}">
+    <br/>
+    <!--    判断字符串是否为空-->
+    <span th:text="${#string.isEmpty(there)}"></span>
+    <br/>
+    <!--    判断字符串是否包含指定的字符-->
+    <span th:text="${#string.contains(there, 'ac')}"></span>
+    <br/>
+    <!--    打印参数字符串的长度-->
+    <span th:text="${#string.length(there)}"></span>
+    <br/><br/>
+
+    默认展示时间日期：<span th:text="${birthday}"></span>
+    <br/>
+    默认格式化日期：<span th:text="${#dates.format(birthday)}"></span>
+    <br/>
+    指定格式化日期：<span th:text="${#dates.format(birthday, 'yyyy-MM-dd hh:mm:ss')}"></span>
+    <br/><br/>
+
+    <!--    4-3 Thymeleaf 的各种条件判断-->
+    <span th:if="${sex == 0}">
+        女
+    </span>
+    <span th:if="${sex == 1}">
+        男
+    </span>
+    <br/><br/>
+
+    <span th:switch="${sex}">
+        <span th:case="1">男</span>
+
+        <span th:case="0">女</span>
+
+        <span th:case="*">未知</span>
+    </span>
+
+<!--    4-4 Thymeleaf 循环遍历list与map-->
+    <span th:each="stf, status : ${myList}">
+        输出：<span th:text="${str}"></span><br/>
+        <!-- 4-5 Thymeleaf 循环遍历过程的变量操作 -->
+        count:<span th:text="${status.count}"></span><br/>
+        index:<span th:text="${status.index}"></span><br/>
+        size:<span th:text="${status.size}"></span><br/>
+        first:<span th:text="${status.first}"></span><br/>
+        last:<span th:text="${status.last}"></span><br/>
+    </span>
+    <br/><br/>
+    <span th:each="attr : ${myMap}">
+        <span th:text="${attr}"></span>
+        <span th:text="${attr.key}"></span>
+        <span th:text="${attr.value}"></span>
+    </span>
+
+<!--    4-7 Thymeleaf 操作request和session-->
+<!--    <br/><br/>-->
+<!--    <span th:text="${#request.getAttribute('englishName')}"></span>-->
+<!--    <br/>-->
+<!--    <span th:text="${#session.getAttribute('userToken')}"></span>-->
+
+</body>
+
+</html>

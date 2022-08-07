@@ -1,0 +1,9 @@
+
+#  5-1 SpringBoot多环境profile定义
+server:
+  port: 8099
+
+mybatis:
+  configuration:    # 3-16 开启mybatis的sql执行日志打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启mybatis的日记实现，可以在控制台打印
+

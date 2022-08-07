@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "thymeleaf.prefix",
+      "type": "java.lang.String",
+      "description": "Description for thymeleaf.prefix."
+  }
+] }
